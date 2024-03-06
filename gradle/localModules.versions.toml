@@ -1,0 +1,7 @@
+[versions]
+core-di=":core:di"
+#Module related to Features:Auth
+#data layers
+#UI layers
+#UI
+#Domain  layers

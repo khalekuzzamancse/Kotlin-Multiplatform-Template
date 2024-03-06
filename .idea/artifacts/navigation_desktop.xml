@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="navigation-desktop">
+    <output-path>$PROJECT_DIR$/feature/navigation/build/libs</output-path>
+    <root id="archive" name="navigation-desktop.jar">
+      <element id="module-output" name="CMPTemplate.feature.navigation.desktopMain" />
+    </root>
+  </artifact>
+</component>
