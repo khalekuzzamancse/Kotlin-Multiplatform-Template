@@ -1,8 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="common_ui-desktop">
     <output-path>$PROJECT_DIR$/layer/ui/common_ui/build/libs</output-path>
-    <root id="archive" name="common_ui-desktop.jar">
-      <element id="module-output" name="CMPTemplate.layer.ui.common_ui.desktopMain" />
-    </root>
+    <root id="archive" name="common_ui-desktop.jar" />
   </artifact>
 </component>
