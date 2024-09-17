@@ -1,42 +1,43 @@
+
 import com.android.build.api.dsl.LibraryExtension
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalog
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import utils.libs
 
-class ComposeMultiplatformPlugin : Plugin<Project> {
+
+open class KotlinMultiplatformPlugin: Plugin<Project> {
     /**use the name defined in /gradle/libs under plugin block*/
-    private val composePluginAlias = "jetbrainsCompose"
     private val multiplatformPluginAlias = "kotlinMultiplatform"
     private val androidLibraryPluginAlias = "androidLibrary"
+    @OptIn(ExperimentalKotlinGradlePluginApi::class)
     override fun apply(project: Project) = with(project) {
 
         with(pluginManager) {
             //TODO:While using it need not apply(again) multiplatform, androidLibrary and JetBrainsCompose plugin
             apply(libs.findPlugin(multiplatformPluginAlias).get().get().pluginId)
             apply(libs.findPlugin(androidLibraryPluginAlias).get().get().pluginId)
-            apply(libs.findPlugin(composePluginAlias).get().get().pluginId)
-
-
         }
 
 
         //TODO: Configuring KotlinMultiplatform
         extensions.configure<KotlinMultiplatformExtension> {
-            jvmToolchain(17)
+            jvmToolchain( Constants.JVM_TARGET.toInt())
+
             androidTarget().apply {
                 compilations.all {
                     kotlinOptions {
-                        jvmTarget = "17"
+                        jvmTarget = Constants.JVM_TARGET
                     }
                 }
             }
+            //  TODO:Adding desktop window support
             jvm("desktop"){
-                jvmToolchain(17)
+                jvmToolchain( Constants.JVM_TARGET.toInt())
             }
 
             //    iosArm64()
@@ -44,19 +45,11 @@ class ComposeMultiplatformPlugin : Plugin<Project> {
             //    iosSimulatorArm64()
 
             applyDefaultHierarchyTemplate()
-            val jetBrainCompose = extensions.getByType<ComposeExtension>()
+
             sourceSets.apply {
                 this.commonMain {
                     dependencies {
-                        //Need not to implement these dependency again in the applied module
-                        implementation(jetBrainCompose.dependencies.runtime)
-                        implementation(jetBrainCompose.dependencies.foundation)
-                        implementation(jetBrainCompose.dependencies.ui)
-                        implementation(jetBrainCompose.dependencies.material3)
-                        implementation(jetBrainCompose.dependencies.materialIconsExtended)
-                        implementation(jetBrainCompose.dependencies.animation)
-                        implementation(jetBrainCompose.dependencies.animationGraphics)
-                        implementation(jetBrainCompose.dependencies.components.resources)   //for resources access
+
                     }
                 }
 
@@ -82,9 +75,9 @@ class ComposeMultiplatformPlugin : Plugin<Project> {
         //TODO:Configuring Android, this the `android { }` block
         //TODO:While use it just define the `namespace` only in the `android block`
         extensions.configure<LibraryExtension> {
-            compileSdk = 34
+            compileSdk = Constants.COMPILE_SDK
             defaultConfig {
-                minSdk = 24
+                minSdk = Constants.MIN_SDK
             }
 
             buildTypes {
@@ -93,20 +86,21 @@ class ComposeMultiplatformPlugin : Plugin<Project> {
                 }
             }
             compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
+                sourceCompatibility = Constants.SOURCE_COMPATIBILITY
+                targetCompatibility = Constants.TARGET_SOURCE_COMPATIBILITY
             }
 //                kotlinOptions { //Can not define here
 //                    jvmTarget = "1.8"
 //                }
-            buildFeatures {
-                compose = true
-            }
-            composeOptions {
-                kotlinCompilerExtensionVersion = "1.5.13"
-            }
         }
 
 
+
+
     }
+
+
+
+    protected  val Project.libs
+        get(): VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
 }

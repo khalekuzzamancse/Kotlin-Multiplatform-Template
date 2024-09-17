@@ -8,5 +8,6 @@ object Constants {
     val SOURCE_COMPATIBILITY = JavaVersion.VERSION_17
     val TARGET_SOURCE_COMPATIBILITY = JavaVersion.VERSION_17
     const val JVM_TARGET="17"
+    const val KOTLIN_COMPILER_EXTENSION_VERSION="1.5.13"
 
 }

@@ -69,5 +69,11 @@ jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin2" }
-
-
+#TODO:Convention plugin
+convention-composeMultiplatfrom={id="convention.composeMultiplatform",version="unspecified"}
+convention-kotlinMultiplatform={id="convention.kotlinMultiplatform",version="unspecified"}
+convention-DomainModulePlugin={id="convention.DomainModulePlugin",version="unspecified"}
+convention-dataModulePlugin={id="convention.dataModulePlugin",version="unspecified"}
+[bundles]
+ktorClient=["ktor-client-core","ktor-client-okhttp","ktor-client-content-negotiation","ktor-serialization-kotlinx-json"]
+coil=["coil3-core","coil3-network","coil3"]

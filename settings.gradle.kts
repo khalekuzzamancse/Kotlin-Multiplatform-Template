@@ -23,11 +23,14 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 rootProject.name = "CMPTemplate"
-val applications= listOf(":applications",":applications:android",":applications:desktop")
-val coreModules= listOf(":core",":core:network",":core:database")
-val uiLayers=listOf(":common",":common:ui",":common:misc")
-val feature=listOf(":feature",":feature:navigation")
+val applications = listOf(":applications", ":applications:android", ":applications:desktop")
+val coreModules = listOf(":core", ":core:network", ":core:database")
+val uiLayers = listOf(":common", ":common:ui", ":common:misc")
+val feature = listOf(
+    ":feature", ":feature:navigation",
+    ":feature:auth",":feature:auth:data",":feature:auth:domain",":feature:auth:ui",
+)
 
-val allModules=applications+coreModules+uiLayers+feature
+val allModules = applications + coreModules + uiLayers + feature
 include(allModules)
 

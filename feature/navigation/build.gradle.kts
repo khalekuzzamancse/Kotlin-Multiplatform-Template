@@ -1,5 +1,5 @@
 plugins {
-    id("convention.composeMultiplatform")
+    alias(libs.plugins.convention.composeMultiplatfrom)
 }
 
 kotlin {
@@ -7,6 +7,7 @@ kotlin {
         val commonMain by getting{
             dependencies {
                 implementation(projects.common.ui)
+
             }
         }
         val androidMain by getting{
