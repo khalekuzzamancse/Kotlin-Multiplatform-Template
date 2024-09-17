@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="domain-desktop">
+    <output-path>$PROJECT_DIR$/feature/auth/domain/build/libs</output-path>
+    <root id="archive" name="domain-desktop.jar">
+      <element id="module-output" name="Kotlin-Multiplafrom-Template.feature.auth.domain.desktopMain" />
+    </root>
+  </artifact>
+</component>

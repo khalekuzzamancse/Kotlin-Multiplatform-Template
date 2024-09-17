@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.convention.composeMultiplatfrom)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -7,7 +8,8 @@ kotlin {
         val commonMain by getting{
             dependencies {
                 implementation(projects.common.ui)
-
+                implementation(libs.common.navigation)
+                implementation(libs.common.viewmodel)
             }
         }
         val androidMain by getting{

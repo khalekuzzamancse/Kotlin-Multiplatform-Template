@@ -2,7 +2,7 @@
   <artifact type="jar" name="desktop-jvm-1.0.0">
     <output-path>$PROJECT_DIR$/applications/desktop/build/libs</output-path>
     <root id="archive" name="desktop-jvm-1.0.0.jar">
-      <element id="module-output" name="CMPTemplate.applications.desktop.jvmMain" />
+      <element id="module-output" name="Kotlin-Multiplafrom-Template.applications.desktop.jvmMain" />
     </root>
   </artifact>
 </component>

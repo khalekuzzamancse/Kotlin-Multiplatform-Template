@@ -22,7 +22,7 @@ dependencyResolutionManagement {
  */
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "CMPTemplate"
+rootProject.name = "Kotlin-Multiplafrom-Template"
 val applications = listOf(":applications", ":applications:android", ":applications:desktop")
 val coreModules = listOf(":core", ":core:network", ":core:database")
 val uiLayers = listOf(":common", ":common:ui", ":common:misc")
