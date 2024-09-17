@@ -3,9 +3,8 @@ plugins {
 }
 kotlin {
 
-
 }
 android {
-    namespace = "network"
+    namespace = "auth.data"
    
 }

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ui-desktop">
+    <output-path>$PROJECT_DIR$/common/ui/build/libs</output-path>
+    <root id="archive" name="ui-desktop.jar">
+      <element id="module-output" name="Kotlin-Multiplafrom-Template.common.ui.desktopMain" />
+    </root>
+  </artifact>
+</component>

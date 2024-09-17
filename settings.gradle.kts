@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")//build-logic as a Composite Build, for convention plugin
     repositories {
         google()
         mavenCentral()
@@ -11,21 +12,25 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
-    versionCatalogs {
-        create("localModules") {
-            from(files("gradle/localModules.versions.toml"))
-        }
-    }
+
 }
 
-rootProject.name = "CMPTemplate"
-val applications= listOf(":applications",":applications:android",":applications:desktop")
-val coreModules= listOf(":core",":core:network",":core:di",":core:database")
-val uiLayers=listOf(":layer","layer:ui","layer:ui:common_ui")
-val domainLayers=listOf(":layer:domain")
-val dataLayers=listOf(":layer:data")
-val feature=listOf(":feature",":feature:navigation")
 
-val allModules=applications+coreModules+uiLayers+domainLayers+dataLayers+feature
+/*
+ * Type-Safe Project Accessors, a feature introduced in Gradle 7.0 that allows you to reference project dependencies
+ * in a type-safe manner without relying on string-based project paths like project(":x") as implement(projects.x)
+ */
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+rootProject.name = "Kotlin-Multiplafrom-Template"
+val applications = listOf(":applications", ":applications:android", ":applications:desktop")
+val coreModules = listOf(":core", ":core:network", ":core:database")
+val uiLayers = listOf(":common", ":common:ui", ":common:misc")
+val feature = listOf(
+    ":feature", ":feature:navigation",
+    ":feature:auth",":feature:auth:data",":feature:auth:domain",":feature:auth:ui",
+)
+
+val allModules = applications + coreModules + uiLayers + feature
 include(allModules)
 

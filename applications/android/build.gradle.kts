@@ -63,4 +63,6 @@ dependencies {
     implementation(compose.foundation)
     implementation(compose.runtime)
     implementation(libs.windowSize)
+    //
+    implementation(projects.feature.navigation)
 }
