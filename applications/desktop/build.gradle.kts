@@ -14,6 +14,8 @@ kotlin {
             dependencies {
                 implementation(compose.desktop.common)
                 implementation(compose.desktop.currentOs)
+                //
+                implementation(projects.feature.navigation)
             }
         }
     }
