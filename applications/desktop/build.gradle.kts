@@ -1,3 +1,4 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -22,6 +23,7 @@ compose.desktop {
     application {
         mainClass = "DesktopMainKt"
         nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "desktopApp"
             version = "1.0.0"
         }

@@ -9,5 +9,6 @@ import web.x.WebXModule
 fun main() {
     ComposeViewport(document.body!!) {
         WebXModule()
+
     }
 }
