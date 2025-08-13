@@ -6,6 +6,8 @@ dependencies {
     compileOnly(libs.android.gradlePlugin) //targeting Android
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin) // using Compose Multiplatform
+    compileOnly(libs.compose.gradlePlugin) // using Compose Multiplatform
+
 }
 
 gradlePlugin {
@@ -18,14 +20,14 @@ gradlePlugin {
             id = "convention.composeMultiplatform"
             implementationClass = "ComposeMultiplatformPlugin"
         }
-        register("dataModule"){
-            id = "convention.dataModulePlugin"
-            implementationClass = "DataModulePlugin"
-        }
-        register("domainModule"){
-            id = "convention.DomainModulePlugin"
-            implementationClass = "DomainModulePlugin"
-        }
+//        register("dataModule"){
+//            id = "convention.dataModulePlugin"
+//            implementationClass = "DataModulePlugin"
+//        }
+//        register("domainModule"){
+//            id = "convention.DomainModulePlugin"
+//            implementationClass = "DomainModulePlugin"
+//        }
     }
 
 

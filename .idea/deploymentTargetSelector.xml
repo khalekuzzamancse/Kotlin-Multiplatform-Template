@@ -4,6 +4,14 @@
     <selectionStates>
       <SelectionState runConfigName="applications.android">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2025-08-08T03:01:12.461669Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/mdkhalekuzzaman/.android/avd/Resizable_Android_14.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>

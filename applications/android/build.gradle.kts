@@ -1,19 +1,21 @@
 plugins {
     alias(libs.plugins.androidApplication)
     kotlin("android")
-    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeCompiler)
+
 }
 
 android {
-    namespace = "cmp.template"
-    compileSdk = 34
+    namespace = "com.app"
+    compileSdk = 35
 
     defaultConfig {
-        applicationId = "cmp.template"
+        applicationId = "com.khalekuzzaman.just.cse.algorithms_simulator"
         minSdk = 27
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 4
+        versionName = "1.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -23,25 +25,27 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            isMinifyEnabled = true
+//            proguardFiles(
+//                getDefaultProguardFile("proguard-android-optimize.txt"),
+//                "proguard-rules.pro"
+//            )
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
+
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.6"
     }
     packaging {
         resources {
@@ -53,16 +57,15 @@ android {
 dependencies {
 
     implementation(libs.androidx.activity.compose)
-    implementation(libs.kotlinx.coroutines.android)
-    //
     implementation(compose.ui)
     implementation(compose.material3)
-    implementation(compose.animation)
-    implementation(compose.animationGraphics)
+    implementation(compose.preview)
     implementation(compose.materialIconsExtended)
-    implementation(compose.foundation)
-    implementation(compose.runtime)
-    implementation(libs.windowSize)
-    //
-    implementation(projects.feature.navigation)
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(project(":feature:navigation"))
+
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0-alpha03")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0-alpha03")
+//
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

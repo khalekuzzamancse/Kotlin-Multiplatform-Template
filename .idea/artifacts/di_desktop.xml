@@ -1,6 +1,8 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="di-desktop">
-    <output-path>$PROJECT_DIR$/core/di/build/libs</output-path>
-    <root id="archive" name="di-desktop.jar" />
+    <output-path>$PROJECT_DIR$/feature/tree-traversal/di/build/libs</output-path>
+    <root id="archive" name="di-desktop.jar">
+      <element id="module-output" name="AlgorithmVisualizer.feature.tree-traversal.di.desktopMain" />
+    </root>
   </artifact>
 </component>

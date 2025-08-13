@@ -1,1 +1,0 @@
-## Define the module responsibly and the public api and the other useful information

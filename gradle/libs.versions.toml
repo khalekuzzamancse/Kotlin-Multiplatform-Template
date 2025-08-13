@@ -1,77 +1,37 @@
 [versions]
-accompanistPermissions = "0.29.2-rc"
-agp = "8.2.0"
-androidx-activityCompose = "1.8.2"
-coroutines = "1.7.3"
-compose-plugin = "1.6.0"
-kotlin = "1.9.21"
-junit = "4.13.2"
+agp = "8.8.0"
+androidx-activityCompose = "1.10.1"
+androidx-lifecycle = "2.8.4"
+compose-multiplatform = "1.7.3"
+kotlin = "2.1.20"
+kotlinx-coroutines = "1.10.2"
 commonNavigationVer = "2.7.0-alpha07"
-commonViewmodelVer="2.8.0"
-coil3-io = "3.0.0-alpha02"
-ktor = "2.3.7"
-windowSize="0.3.1"
-kotlin2 = "1.9.21"
-coreKtx = "1.12.0"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-appcompat = "1.6.1"
-core = "1.12.0"
-playServicesLocation = "21.2.0"
-kotlinxCoroutinesSwing="1.8.0"
-
-#TODO:Libraries
-
-
 
 [libraries]
-accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-activity-compose= { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-coil3 = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3-io" }
-coil3-network = { module = "io.coil-kt.coil3:coil-network", version.ref = "coil3-io" }
-coil3-core = { module = "io.coil-kt.coil3:coil-core", version.ref = "coil3-io" }
-windowSize = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform",version.ref = "windowSize"}
-kotlinx-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinxCoroutinesSwing" }
-
-#Test
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-androidx-core = { group = "androidx.core", name = "core", version.ref = "core" }
-play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
-## Navigation for multiplatfrom
-common-navigation={module="org.jetbrains.androidx.navigation:navigation-compose",version.ref="commonNavigationVer"}
-common-viewmodel={module="org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose",version.ref="commonViewmodelVer"}
-
-
+androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
+windowSize = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform",version="0.3.1"}
+##For convention plugin building needs them
 android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "compose-plugin" }
-
+compose-gradlePlugin = { module = "org.jetbrains.compose:org.jetbrains.compose.gradle.plugin", version.ref = "compose-multiplatform" }
+## Navigation for multiplatfrom
+common-navigation={module="org.jetbrains.androidx.navigation:navigation-compose",version.ref="commonNavigationVer"}
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin2" }
 #TODO:Convention plugin
 convention-composeMultiplatfrom={id="convention.composeMultiplatform",version="unspecified"}
-convention-kotlinMultiplatform={id="convention.kotlinMultiplatform",version="unspecified"}
-convention-domainModulePlugin={id="convention.DomainModulePlugin",version="unspecified"}
-convention-dataModulePlugin={id="convention.dataModulePlugin",version="unspecified"}
-
 
 [bundles]
-ktorClient=["ktor-client-core","ktor-client-okhttp","ktor-client-content-negotiation","ktor-serialization-kotlinx-json"]
-coil=["coil3-core","coil3-network","coil3"]
+test = ["kotlin-test", "kotlin-test-junit"]

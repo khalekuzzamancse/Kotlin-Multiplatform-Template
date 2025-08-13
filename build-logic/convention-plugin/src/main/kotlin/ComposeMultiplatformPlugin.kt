@@ -1,47 +1,43 @@
+
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.compose.ComposeExtension
+import org.jetbrains.compose.ComposePlugin
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 class ComposeMultiplatformPlugin : KotlinMultiplatformPlugin() {
-    /**use the name defined in /gradle/libs under plugin block*/
-    private val composePluginAlias = "jetbrainsCompose"
-    private val multiplatformPluginAlias = "kotlinMultiplatform"
-    private val androidLibraryPluginAlias = "androidLibrary"
-
     override fun apply(project: Project) = with(project) {
         super.apply(project)
 
         with(pluginManager) {
             //TODO:While using it need not apply(again) multiplatform, androidLibrary and JetBrainsCompose plugin
-            apply(libs.findPlugin(multiplatformPluginAlias).get().get().pluginId)
-            apply(libs.findPlugin(androidLibraryPluginAlias).get().get().pluginId)
-            apply(libs.findPlugin(composePluginAlias).get().get().pluginId)
+            apply(Constants.KMP_PLUGIN_ID)
+            apply(Constants.ANDROID_LIBRARY_PLUGIN_ID)
+            apply(Constants.COMPOSE_COMPILER_PLUGIN_ID)
+            apply(Constants.CMP_PLUGIN_ID)
         }
 
 
         //TODO: Configuring KotlinMultiplatform
         extensions.configure<KotlinMultiplatformExtension> {
             applyDefaultHierarchyTemplate()
-            val jetBrainCompose = extensions.getByType<ComposeExtension>()
+        val cmpDependencies = extensions.getByType<ComposePlugin.Dependencies>()
             sourceSets.apply {
                 this.commonMain {
                     dependencies {
                         //Need not to implement these dependency again in the applied module
-                        implementation(jetBrainCompose.dependencies.runtime)
-                        implementation(jetBrainCompose.dependencies.foundation)
-                        implementation(jetBrainCompose.dependencies.ui)
-                        implementation(jetBrainCompose.dependencies.material3)
-                        implementation(jetBrainCompose.dependencies.materialIconsExtended)
-                        implementation(jetBrainCompose.dependencies.animation)
-                        implementation(jetBrainCompose.dependencies.animationGraphics)
-                        implementation(jetBrainCompose.dependencies.components.resources)   //for resources access
-                        //make sure "kotlinx-coroutines-core" exits in version catalog libraries
+                        implementation(cmpDependencies.runtime)
+                        implementation(cmpDependencies.foundation)
+                        implementation(cmpDependencies.ui)
+                        implementation(cmpDependencies.material3)
+                        implementation(cmpDependencies.materialIconsExtended)
+                        implementation(cmpDependencies.animation)
+                        implementation(cmpDependencies.animationGraphics)
+                        implementation(cmpDependencies.components.uiToolingPreview)
+                        implementation(cmpDependencies.components.resources)   //for resources access
+                     //TODO:make sure "kotlinx-coroutines-core" exits in version catalog libraries
                         implementation(libs.findLibrary("kotlinx-coroutines-core").get().get())
-                        //make sure "windowSize" exits in version catalog libraries
-                        implementation(libs.findLibrary("windowSize").get().get())
                     }
                 }
 
@@ -52,8 +48,8 @@ class ComposeMultiplatformPlugin : KotlinMultiplatformPlugin() {
                 }
                 this.jvmMain {
                     dependencies {
-                        //make sure "kotlinx-coroutines-core" exits in version catalog libraries
-                        implementation(libs.findLibrary("kotlinx-coroutines-swing").get().get())
+                        //TODO:make sure "kotlinx-coroutines-swing" exits in version catalog libraries
+                      implementation(libs.findLibrary("kotlinx-coroutines-swing").get().get())
                     }
 
                 }
@@ -67,15 +63,15 @@ class ComposeMultiplatformPlugin : KotlinMultiplatformPlugin() {
         //TODO:Configuring Android, this the `android { }` block
         //TODO:While use it just define the `namespace` only in the `android block`
         extensions.configure<LibraryExtension> {
-//                kotlinOptions { //Can not define here
-//                    jvmTarget = "1.8"
-//                }
             buildFeatures {
                 compose = true
             }
-            composeOptions {
-                kotlinCompilerExtensionVersion = Constants.KOTLIN_COMPILER_EXTENSION_VERSION
-            }
+            //     kotlinOptions { //Can not define here
+//                    jvmTarget = "1.8"
+//                }
+//            composeOptions {
+//                kotlinCompilerExtensionVersion = Constants.KOTLIN_COMPILER_EXTENSION_VERSION
+//            }
         }
 
 

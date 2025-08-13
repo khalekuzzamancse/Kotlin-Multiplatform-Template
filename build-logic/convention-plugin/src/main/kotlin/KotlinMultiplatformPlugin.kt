@@ -1,4 +1,3 @@
-
 import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -6,21 +5,18 @@ import org.gradle.api.artifacts.VersionCatalog
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 
 open class KotlinMultiplatformPlugin: Plugin<Project> {
     /**use the name defined in /gradle/libs under plugin block*/
-    private val multiplatformPluginAlias = "kotlinMultiplatform"
-    private val androidLibraryPluginAlias = "androidLibrary"
-    @OptIn(ExperimentalKotlinGradlePluginApi::class)
+
     override fun apply(project: Project) = with(project) {
 
         with(pluginManager) {
-            //TODO:While using it need not apply(again) multiplatform, androidLibrary and JetBrainsCompose plugin
-            apply(libs.findPlugin(multiplatformPluginAlias).get().get().pluginId)
-            apply(libs.findPlugin(androidLibraryPluginAlias).get().get().pluginId)
+            //TODO:While using it need not apply(again) multiplatform, androidLibrary plugin
+            apply(Constants.KMP_PLUGIN_ID)
+            apply(Constants.ANDROID_LIBRARY_PLUGIN_ID)
         }
 
 
@@ -30,14 +26,14 @@ open class KotlinMultiplatformPlugin: Plugin<Project> {
 
             androidTarget().apply {
                 compilations.all {
-                    kotlinOptions {
-                        jvmTarget = Constants.JVM_TARGET
-                    }
+//                    kotlinOptions {
+//                        jvmTarget = Constants.JVM_TARGET
+//                    }
                 }
             }
             //  TODO:Adding desktop window support
             jvm("desktop"){
-                jvmToolchain( Constants.JVM_TARGET.toInt())
+              //  jvmToolchain( Constants.JVM_TARGET.toInt())
             }
 
             //    iosArm64()
@@ -64,11 +60,11 @@ open class KotlinMultiplatformPlugin: Plugin<Project> {
                 }
             }
 
-            ///to use expect and actual keywords
-            compilerOptions {
-                // Common compiler options applied to all Kotlin source sets
-                freeCompilerArgs.add("-Xmulti-platform")
-            }
+//            ///to use expect and actual keywords
+//            compilerOptions {
+//                // Common compiler options applied to all Kotlin source sets
+//                freeCompilerArgs.add("-Xmulti-platform")
+//            }
 
 
         }
@@ -93,9 +89,6 @@ open class KotlinMultiplatformPlugin: Plugin<Project> {
 //                    jvmTarget = "1.8"
 //                }
         }
-
-
-
 
     }
 
