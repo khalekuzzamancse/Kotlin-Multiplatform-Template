@@ -25,6 +25,8 @@
             <option value="$PROJECT_DIR$/applications" />
             <option value="$PROJECT_DIR$/applications/android" />
             <option value="$PROJECT_DIR$/applications/desktop" />
+            <option value="$PROJECT_DIR$/applications/ios" />
+            <option value="$PROJECT_DIR$/applications/ios/shared" />
             <option value="$PROJECT_DIR$/applications/web" />
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/convention-plugin" />
@@ -34,7 +36,6 @@
             <option value="$PROJECT_DIR$/feature/web-support" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
