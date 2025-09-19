@@ -18,9 +18,14 @@ if [ "YES" = "$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED" ]; then
   echo "Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \"YES\""
   exit 0
 fi
-cd "$SRCROOT/.."
+cd "$SRCROOT/.." ./gradlew :applications:ios:shared:embedAndSignAppleFrameworkForXcode
 
 ```
+note that if xcode edit the gradlew :applications:ios:shared:embedAndSignAppleFrameworkForXcode then open the `iosApp.xcodeproj` in vs code and update the ios
+shared module path in two places by searching it then save the fill.
+Note that here refer the shared module which is directly import by the iosApp XCode project.
+you can include the iosApp as module in the setting but not mandatory, adding will make the android studio show the only module name 
+instead of directory name
 Step 02: 
 Make sure you have the iOSMain src set otherwise the build/bin directory will not create  bin directory will contain 
 the header and other binary that will used by the XCode project as framework dependency

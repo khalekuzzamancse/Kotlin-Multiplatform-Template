@@ -38,7 +38,7 @@ val applicationModules = listOf(
     ":applications:desktop",
     ":applications:web",
     ":applications:ios:shared",
-    //":iosApp"
+//    ":iosApp"
 
 )
 
